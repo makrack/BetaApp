@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.example.betaapp.data.Result;
+import com.example.betaapp.ui.Asistente.AsistenteViewModel;
+import com.example.betaapp.data.model.EventosAsistente;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,13 +33,15 @@ public class EventsActivity extends AppCompatActivity {
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
     };
-
+    private AsistenteViewModel loginViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+
+        Result<List<EventosAsistente>> listEventos = loginViewModel.getEventoAsistente(1);
 
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
