@@ -16,17 +16,19 @@ import java.util.List;
 
 public class AsistenteViewModel extends ViewModel{
 
+    private MutableLiveData<List<EventosAsistente>> EventosResult = new MutableLiveData<>();
+
     private AsistenteRepository asistenteRepository;
 
-    AsistenteViewModel(AsistenteRepository loginRepository) {
-        this.asistenteRepository = loginRepository;
-    }
 
-    public Result<List<EventosAsistente>> getEventoAsistente(Integer intAsistenteID) {
+    public  List<EventosAsistente> getEventoAsistente(Integer intAsistenteID) {
         // can be launched in a separate asynchronous job
-        Result<List<EventosAsistente>> result = asistenteRepository.getEventosAsistente(intAsistenteID);
+        AsistenteRepository rep = new AsistenteRepository();
 
+        List<EventosAsistente> result = rep.getEventosAsistente(intAsistenteID);
         return result;
+
+
         /*
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();

@@ -20,7 +20,7 @@ import java.io.Reader;
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 public class LoginDataSource {
-    private static final String SVC_URL = "http://10.0.2.2/Mexica/LoginService.svc/";
+    private static final String SVC_URL = "http://www.mexisoft.mx/WsRegistec/LoginService.svc/";
 
     public Result<LoggedInUser> login(String username, String password) {
 

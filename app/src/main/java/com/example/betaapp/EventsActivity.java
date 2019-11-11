@@ -33,7 +33,7 @@ public class EventsActivity extends AppCompatActivity {
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
     };
-    private AsistenteViewModel loginViewModel;
+    private AsistenteViewModel AsistenteViewModel;
 
 
     @Override
@@ -41,15 +41,19 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
-        Result<List<EventosAsistente>> listEventos = loginViewModel.getEventoAsistente(1);
+
+        AsistenteViewModel VM = new AsistenteViewModel();
+        List<EventosAsistente> listEventos = VM.getEventoAsistente(1);
 
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < listEventos.size(); i++) {
             HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("listview_title", listviewTitle[i]);
-            hm.put("listview_discription", listviewShortDescription[i]);
-            hm.put("listview_image", Integer.toString(listviewImage[i]));
+            EventosAsistente eve = listEventos.get(i);
+
+           hm.put("listview_title", eve.vchNombreEvento());
+            hm.put("listview_discription", eve.datFechaInicio() + ' ' + eve.vchLugarEvento());
+            hm.put("listview_image", Integer.toString(R.drawable.smalllogo));
             aList.add(hm);
         }
 

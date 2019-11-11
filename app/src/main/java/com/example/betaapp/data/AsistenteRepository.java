@@ -14,16 +14,7 @@ public class AsistenteRepository {
     private EventosAsistente user = null;
 
     // private constructor : singleton access
-    private AsistenteRepository(AsistenteDataSource dataSource) {
-        this.dataSource = dataSource;
-    }
 
-    public static AsistenteRepository getInstance(AsistenteDataSource dataSource) {
-        if (instance == null) {
-            instance = new AsistenteRepository(dataSource);
-        }
-        return instance;
-    }
 
 
 
@@ -33,9 +24,10 @@ public class AsistenteRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<List<EventosAsistente>> getEventosAsistente(Integer intAsistenteID) {
+    public List<EventosAsistente> getEventosAsistente(Integer intAsistenteID) {
         // handle login
-        Result<List<EventosAsistente>> result = dataSource.getEventosAsistente(intAsistenteID);
+        AsistenteDataSource data = new AsistenteDataSource();
+        List<EventosAsistente> result = data.getEventosAsistente(intAsistenteID);
         //if (result instanceof Result.Success) {
         //    setLoggedInUser(((Result.Success<EventosAsistente>) result).getData());
         //}
